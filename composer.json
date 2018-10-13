@@ -1,6 +1,6 @@
 {
     "name": "jurrid/documentor",
-    "description": "A package generate documentation from Laravel API routes",
+    "description": "A package to generate documentation from Laravel API routes.",
     "keywords": [
         "API",
         "Docs",
