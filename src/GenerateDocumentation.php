@@ -39,17 +39,17 @@ class GenerateDocumentation extends Command
                 if (strtolower($namespace) != 'closure') {
 
                     $callTypes = implode(', ',
-                        $this->getRouteMethodes($route)
+                        $this->getRouteMethods($route)
                     );
                     $routes[hash('sha256', $namespace)]['controller'] = $class;
                     $routes[hash('sha256', $namespace)]['routes'][]   = [
                         'http'       => $callTypes,
                         'name'       => $route->getName(),
-                        'methode'    => $method,
+                        'method'    => $method,
                         'namespace'  => $namespace,
                         'uri'        => $this->getUri($route),
                         'middleware' => $route->middleware(),
-                        'summery'    => $this->getSummery($namespace, $method),
+                        'summary'    => $this->getSummary($namespace, $method),
                         'validation' => $this->getValidation($namespace, $method),
                     ];
                 }
@@ -59,7 +59,7 @@ class GenerateDocumentation extends Command
         return $routes;
     }
 
-    protected function store(array $routes):void
+    protected function store(array $routes)
     {
         $directory = storage_path('documentor');
         if (File::exists($directory) == false) {
@@ -68,7 +68,7 @@ class GenerateDocumentation extends Command
         File::put("$directory/data.ser", serialize($routes));
     }
 
-    protected function getObjectInfo(string $actionName):array
+    protected function getObjectInfo(string $actionName): array
     {
         $namespace = array_first(explode('@', $actionName));
         $class  = array_last(explode('\\', $namespace));
@@ -81,7 +81,7 @@ class GenerateDocumentation extends Command
         ];
     }
 
-    public function getUri(Route $route):string
+    public function getUri(Route $route): string
     {
         if (version_compare(app()->version(), '5.4', '<')) {
             return $route->getUri();
@@ -89,7 +89,7 @@ class GenerateDocumentation extends Command
         return $route->uri();
     }
 
-    protected function getRouteMethodes(Route $route):array
+    protected function getRouteMethods(Route $route): array
     {
         if (version_compare(app()->version(), '5.4', '<')) {
             $methods = $route->getMethods();
@@ -99,7 +99,7 @@ class GenerateDocumentation extends Command
         return array_diff($methods, ['HEAD']);
     }
 
-    protected function getSummery(string $namespace, string $method):string
+    protected function getSummary(string $namespace, string $method): string
     {
         $reflection = new ReflectionClass($namespace);
 
@@ -110,8 +110,8 @@ class GenerateDocumentation extends Command
             if(is_string($comment)){
                 try{
                     $factory  = DocBlockFactory::createInstance();
-                    $docblock = $factory->create($comment);
-                    return $docblock->getSummary();
+                    $docBlock = $factory->create($comment);
+                    return $docBlock->getSummary();
 
                 }catch(\InvalidArgumentException $e){
                     return "";
@@ -122,7 +122,7 @@ class GenerateDocumentation extends Command
         return "";
     }
 
-    public function getValidation(string $namespace, string $method):array
+    public function getValidation(string $namespace, string $method): array
     {
         if(method_exists($namespace, $method)){
             $reflection = new ReflectionMethod($namespace, $method);

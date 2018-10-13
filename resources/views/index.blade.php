@@ -43,7 +43,7 @@
                                 <h4 class="mb-2" id="item-{{$loop->parent->iteration}}-{{$loop->iteration}}">
                                     <strong>{{$route['http']}}</strong> - {{$route['uri']}}
                                 </h4>
-                                @include('docu::partials.summery')
+                                @include('docu::partials.summary')
                                 @include('docu::partials.message')
                                 @include('docu::partials.middleware')
                                 @include('docu::partials.validation')

@@ -9,7 +9,7 @@ return [
 
     'version' => 'v 1.0',
 
-    'author' => 'John Do',
+    'author' => 'John Doe',
 
     // Make the string empty to hide the webpage
     'author_webpage' => '#',
@@ -17,7 +17,7 @@ return [
     // Make the string empty to hide the webpage
     'forum_webpage' => 'https://support.lorum.ipsum/forums',
 
-    'license' => 'Un License',
+    'license' => 'Unlicensed',
 
     // Make the string empty to hide the webpage
     'license_webpage' => '',
