@@ -1,0 +1,38 @@
+{
+    "name": "jurrid/documentor",
+    "description": "A package generate documentation from Laravel API routes",
+    "keywords": [
+        "API",
+        "Docs",
+        "Laravel",
+        "Documentation"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/jurrid/laravel-api-docs-generator",
+    "authors": [
+        {
+            "name": "Jurrid Hoitsma",
+            "email": "jurrid@hotmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "laravel/framework": "^5.5",
+        "phpdocumentor/reflection-docblock": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jurrid\\Documentor\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jurrid\\Documentor\\DocumentorServiceProvider"
+            ]
+        }
+    }
+}
